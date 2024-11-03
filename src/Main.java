@@ -1,35 +1,41 @@
-import java.util.List;
+import model.dao.DaoFactory;
+import model.dao.GuestDao;
+import model.entities.Guest;
+
+import java.util.ArrayList;
 
 public class Main {
 
 
     public static void main(String[] args) {
 
-//        Guest ga = new Guest("Richard Fuckleston", "+43 291 221 234", "xd@gmail.com");
-//        Guest gb = new Guest("Richardine Stonewall", "+58 923 482 034", "yeah@yahoo.com");
-//
-//        Database db = new Database();
-//
-//        db.removeGuestById(2);
-//        db.removeGuestById(3);
-//
-//        db.addGuest(ga);
-//        db.addGuest(gb);
-//
-//        List<Guest> guests = db.getAllGuests();
-//
-//        if (guests.isEmpty()) {
-//            System.out.println("No customers found.");
-//        } else {
-//            for (Guest guest : guests) {
-//                System.out.println(guest);
-//            }
-//        }
+        GuestDao guestDao = DaoFactory.createGuestDao();
 
-        CLI cli = new CLI();
+        ArrayList<Guest> guests = (ArrayList<Guest>)guestDao.findAll();
 
-        cli.start();
+        for(Guest guest : guests){
+            System.out.println(guest);
+        }
 
+        guestDao.insert(new Guest("jgonzales@yahoo.biz", "+57 943 034 445", "Jeronimo Goznales"));
+
+        guests = (ArrayList<Guest>)guestDao.findAll();
+
+        for(Guest guest : guests){
+            System.out.println(guest);
+        }
+
+        guestDao.deleteById(2);
+
+        guests = (ArrayList<Guest>)guestDao.findAll();
+
+        for(Guest guest : guests){
+            System.out.println(guest);
+        }
+
+        Guest guestThree = guestDao.findById(3);
+
+        System.out.println(guestThree);
 
     }
 }
