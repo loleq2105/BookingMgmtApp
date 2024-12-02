@@ -50,6 +50,6 @@ public class Guest{
 
     @Override
     public String toString() {
-        return "Guest [ID=" + id + ", Name=" + name + ", Phone=" + phone + ", E-mail=" + email + "]";
+        return String.format("Guest [id=%s, name=%s, phone=%s, email=%s]", id, name, phone, email);
     }
 }

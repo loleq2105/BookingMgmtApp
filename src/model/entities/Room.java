@@ -57,4 +57,9 @@ public class Room {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Room [id=%s, number=%s, capacity=%s, typeId=%s, price=%s]", id, number, capacity, typeId, price);
+    }
 }

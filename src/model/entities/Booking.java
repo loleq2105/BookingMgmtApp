@@ -59,4 +59,9 @@ public class Booking {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Booking [id=%s, guestId=%s, roomId=%s, startDate=%s, endDate=%s]", id, guestId, roomId, startDate, endDate);
+    }
 }
