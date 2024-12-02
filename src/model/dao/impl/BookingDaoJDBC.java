@@ -25,8 +25,8 @@ public class BookingDaoJDBC implements BookingDao {
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, booking.getGuestId());
             statement.setInt(2, booking.getRoomId());
-            statement.setDate(3, new java.sql.Date(booking.getStartDate().getTime()));
-            statement.setDate(4, new java.sql.Date(booking.getEndDate().getTime()));
+            statement.setObject(3, booking.getStartDate());
+            statement.setObject(4, booking.getEndDate());
 
             int rowsAffected = statement.executeUpdate();
 
@@ -79,8 +79,8 @@ public class BookingDaoJDBC implements BookingDao {
                 booking.setId(resultSet.getInt("id"));
                 booking.setGuestId(resultSet.getInt("guest_id"));
                 booking.setRoomId(resultSet.getInt("room_id"));
-                booking.setStartDate(resultSet.getDate("start_date"));
-                booking.setEndDate(resultSet.getDate("end_date"));
+                booking.setStartDate(resultSet.getDate("start_date").toLocalDate());
+                booking.setEndDate(resultSet.getDate("end_date").toLocalDate());
                 bookings.add(booking);
             }
             return bookings;
@@ -107,8 +107,8 @@ public class BookingDaoJDBC implements BookingDao {
                 booking.setId(resultSet.getInt("id"));
                 booking.setGuestId(resultSet.getInt("guest_id"));
                 booking.setRoomId(resultSet.getInt("room_id"));
-                booking.setStartDate(resultSet.getDate("start_date"));
-                booking.setEndDate(resultSet.getDate("end_date"));
+                booking.setStartDate(resultSet.getDate("start_date").toLocalDate());
+                booking.setEndDate(resultSet.getDate("end_date").toLocalDate());
                 return booking;
             }
             return null;
@@ -135,8 +135,8 @@ public class BookingDaoJDBC implements BookingDao {
                 booking.setId(resultSet.getInt("id"));
                 booking.setGuestId(resultSet.getInt("guest_id"));
                 booking.setRoomId(resultSet.getInt("room_id"));
-                booking.setStartDate(resultSet.getDate("start_date"));
-                booking.setEndDate(resultSet.getDate("end_date"));
+                booking.setStartDate(resultSet.getDate("start_date").toLocalDate());
+                booking.setEndDate(resultSet.getDate("end_date").toLocalDate());
                 bookings.add(booking);
             }
             return bookings;
@@ -164,8 +164,8 @@ public class BookingDaoJDBC implements BookingDao {
                 booking.setId(resultSet.getInt("id"));
                 booking.setGuestId(resultSet.getInt("guest_id"));
                 booking.setRoomId(resultSet.getInt("room_id"));
-                booking.setStartDate(resultSet.getDate("start_date"));
-                booking.setEndDate(resultSet.getDate("end_date"));
+                booking.setStartDate(resultSet.getDate("start_date").toLocalDate());
+                booking.setEndDate(resultSet.getDate("end_date").toLocalDate());
                 bookings.add(booking);
             }
             return bookings;
