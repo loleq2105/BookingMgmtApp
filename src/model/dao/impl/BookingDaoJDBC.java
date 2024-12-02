@@ -95,7 +95,7 @@ public class BookingDaoJDBC implements BookingDao {
 
     @Override
     public Booking findById(int id) {
-        String sql = "SELECT id, guest_id, room_id, start_date, end_date FROM bookings WHERE id = ?";
+        String sql = "SELECT id, guest_id, room_id, start_date, end_date FROM booking WHERE id = ?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
