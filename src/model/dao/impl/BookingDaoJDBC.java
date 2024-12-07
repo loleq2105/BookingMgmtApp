@@ -129,7 +129,7 @@ public class BookingDaoJDBC implements BookingDao {
         try {
             statement = connection.prepareStatement(sql);
             statement.setInt(1, guestId);
-            resultSet = statement.executeQuery(sql);
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Booking booking = new Booking();
                 booking.setId(resultSet.getInt("id"));
@@ -158,7 +158,7 @@ public class BookingDaoJDBC implements BookingDao {
         try {
             statement = connection.prepareStatement(sql);
             statement.setInt(1, roomId);
-            resultSet = statement.executeQuery(sql);
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Booking booking = new Booking();
                 booking.setId(resultSet.getInt("id"));
