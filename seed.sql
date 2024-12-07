@@ -15,4 +15,5 @@ INSERT INTO rooms (number, capacity, type_id, price) VALUES
 
 INSERT INTO booking (guest_id, room_id, start_date, end_date) VALUES
 (1, 2, '2024-11-25', '2024-11-30'),
+(2, 1, '2024-11-01', '2024-11-08'),
 (3, 1, '2024-10-09', '2024-10-23');
