@@ -31,4 +31,5 @@ public class BookingDetails {
     public String toString() {
         return String.format("BookingDetails [booking=%s, guest=%s, roomDetails=%s]", booking, guest, roomDetails);
     }
+
 }

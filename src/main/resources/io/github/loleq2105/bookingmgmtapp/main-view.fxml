@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.loleq2105.bookingmgmtapp.controller.MainController">
+   <children>
+      <VBox minWidth="222.0" prefHeight="664.0" prefWidth="222.0" spacing="20.0" style="-fx-background-color: #eee;">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <VBox alignment="CENTER" prefHeight="127.0" prefWidth="202.0">
+               <children>
+                  <Label text="BookingMgmtApp">
+                     <font>
+                        <Font name="Comic Sans MS" size="24.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color opacity="0.7099999785423279" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9605262875556946" green="0.15119396150112152" blue="0.15119396150112152" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Label>
+                  <Label text="V 0.0.1">
+                     <font>
+                        <Font name="Comic Sans MS" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="250.0" prefWidth="202.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button fx:id="bookingButton" mnemonicParsing="false" onAction="#onBooking" prefHeight="51.0" prefWidth="202.0" text="Rezerwacje">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="roomsButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRooms" prefHeight="51.0" prefWidth="202.0" text="Pokoje">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="guestsButton" layoutX="10.0" layoutY="71.0" mnemonicParsing="false" onAction="#onGuests" prefHeight="51.0" prefWidth="202.0" text="Goście">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" layoutX="20.0" layoutY="220.0" prefHeight="161.0" prefWidth="202.0">
+               <children>
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExit" prefHeight="38.0" prefWidth="202.0" text="Wyjście">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="viewAnchorPane" prefHeight="710.0" prefWidth="933.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+</HBox>

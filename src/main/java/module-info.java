@@ -10,7 +10,10 @@ module io.github.loleq2105.bookingmgmtapp {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires java.desktop;
 
     opens io.github.loleq2105.bookingmgmtapp to javafx.fxml;
     exports io.github.loleq2105.bookingmgmtapp;
+    exports io.github.loleq2105.bookingmgmtapp.controller;
+    opens io.github.loleq2105.bookingmgmtapp.controller to javafx.fxml;
 }
