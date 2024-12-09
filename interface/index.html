@@ -35,10 +35,13 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href=".." class="nav-link">Welcome to MkDocs</a>
+                                <a href=".." class="nav-link">BookingMgmtApp</a>
                             </li>
                             <li class="nav-item">
                                 <a href="./" class="nav-link active" aria-current="page">Interface</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../mkdocs/" class="nav-link">Welcome to MkDocs</a>
                             </li>
                         </ul>
 
@@ -54,7 +57,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../mkdocs/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -78,6 +81,22 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#interface" class="nav-link">Interface</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#the-sidebar" class="nav-link">The Sidebar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#booking-view" class="nav-link">Booking View</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#new-booking-dialog" class="nav-link">New Booking Dialog</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#rooms-view" class="nav-link">Rooms View</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -86,7 +105,52 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="interface">Interface</h1>
-<p>This application has a GUI layer written in JavaFX. Yay!</p></div>
+<p>This application provides a user interface for managing hotel bookings. The main features include viewing and managing bookings, viewing rooms, and making new bookings.</p>
+<p>The interface currently offers a handful of different functional elements. It is also currently written in Polish, but the plan is to internationalize it in the future.</p>
+<hr />
+<h2 id="the-sidebar">The Sidebar</h2>
+<p><img alt="Sidebar" src="../img/sidebar.png" /></p>
+<p>The sidebar is located on the left side of the application window. It contains buttons for navigating between different views of the application. Its elements include:</p>
+<ul>
+<li>Logo display (<strong>1</strong>): The logo of the application along with the current version number.</li>
+<li>Booking button (<strong>2</strong>): Navigates to the Booking view.</li>
+<li>Rooms button (<strong>3</strong>): Navigates to the Rooms view.</li>
+<li>Guests button (<strong>4</strong>): Currently not implemented.</li>
+<li>Exit button (<strong>5</strong>): Exits the application.</li>
+</ul>
+<h2 id="booking-view">Booking View</h2>
+<p><img alt="Booking View" src="../img/booking.png" /></p>
+<p>The Booking view displays a list of bookings along with the associated guest and room information. It provides functionalities for viewing, adding, and deleting bookings. Provides a range of sorting and filtering options that dynamically update the table. The Booking view includes:</p>
+<ul>
+<li>A table of bookings (<strong>1</strong>): Displays the list of bookings in a table.</li>
+<li>Guest info display (<strong>2</strong>): Displays the information of the guest associated with the selected booking.</li>
+<li>Room info display (<strong>3</strong>): Displays the information of the room associated with the selected booking.</li>
+<li>"From" date picker (<strong>4</strong>): Selects the start date of range to filter bookings. Automatically updates the table.</li>
+<li>"To" date picker (<strong>5</strong>): Selects the end date of range to filter bookings. Automatically updates the table.</li>
+<li>"Sort by" dropdown (<strong>6</strong>): Sorts the bookings based on the selected criteria. Automatically updates the table.</li>
+<li>"Add Booking" button (<strong>7</strong>): Opens a dialog to add a new booking.</li>
+<li>"Delete Booking" button (<strong>8</strong>): Deletes the selected booking. Shows a confirmation dialog first.</li>
+</ul>
+<h2 id="new-booking-dialog">New Booking Dialog</h2>
+<p><img alt="New Booking Dialog" src="../img/addbooking.png" /></p>
+<p>The New Booking dialog allows the user to add a new booking to the system. It includes the following elements:</p>
+<ul>
+<li>Guest table (<strong>1</strong>): Displays the list of guests to choose from.</li>
+<li>Room table (<strong>2</strong>): Displays the list of rooms to choose from. Dynamically updated based on selected dates according to availability.</li>
+<li>"From" date picker (<strong>3</strong>): Selects the start date of the booking.</li>
+<li>"To" date picker (<strong>4</strong>): Selects the end date of the booking.</li>
+<li>"Add Booking" button (<strong>5</strong>): Adds the booking to the system. Greyed out until both a guest and a room are selected.</li>
+</ul>
+<p>A confirmation dialog is shown after successfully adding a booking.</p>
+<p><img alt="Confirmation Dialog" src="../img/addbookingconfirm.png" /></p>
+<h2 id="rooms-view">Rooms View</h2>
+<p><img alt="Rooms View" src="../img/rooms.png" /></p>
+<p>The Rooms view displays a list of rooms along with the associated room type information. It provides functionality for viewing rooms. The Rooms view includes:</p>
+<ul>
+<li>A table of rooms (<strong>1</strong>): Displays the list of rooms in a table.</li>
+<li>Add Room button (<strong>2</strong>): Currently not implemented.</li>
+<li>Delete Room button (<strong>3</strong>): Currently not implemented.</li>
+</ul></div>
             </div>
         </div>
 

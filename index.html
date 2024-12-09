@@ -35,10 +35,13 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Welcome to MkDocs</a>
+                                <a href="." class="nav-link active" aria-current="page">BookingMgmtApp</a>
                             </li>
                             <li class="nav-item">
                                 <a href="interface/" class="nav-link">Interface</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="mkdocs/" class="nav-link">Welcome to MkDocs</a>
                             </li>
                         </ul>
 
@@ -76,13 +79,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#welcome-to-mkdocs" class="nav-link">Welcome to MkDocs</a>
+            <li class="nav-item" data-bs-level="1"><a href="#bookingmgmtapp" class="nav-link">BookingMgmtApp</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-bs-level="2"><a href="#current-features" class="nav-link">Current Features</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
+            <li class="nav-item" data-bs-level="2"><a href="#project-structure" class="nav-link">Project structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#running-the-application" class="nav-link">Running the Application</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#database-schema" class="nav-link">Database Schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#future-enhancements" class="nav-link">Future Enhancements</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -93,21 +108,111 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h1 id="bookingmgmtapp">BookingMgmtApp</h1>
+<p>BookingMgmtApp is a simple app allowing users to manage accommodation booking in a hotel. It is written in <strong>Java</strong> and uses the <strong>JavaFX</strong> framework and <strong>JDBC</strong>, and depends on a MariaDB MySQL database. Internally, the project aims to implement various enterprise software programming patterns, such as the DAO pattern, used commonly in commercial applications.</p>
+<hr />
+<h2 id="current-features">Current Features</h2>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li>View and manage bookings.</li>
+<li>View rooms.</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<h2 id="project-structure">Project structure</h2>
+<p>The project is organized into packages, with the following structure:</p>
+<ul>
+<li><code>java</code>: Contains the packages and classes of the project.<ul>
+<li><code>model.entities</code>: Contains the entity classes of the system.<ul>
+<li><code>Guest</code>: Represents the Guest entity.</li>
+<li><code>Room</code>: Represents the Room entity.</li>
+<li><code>Booking</code>: Represents the Booking entity.</li>
+<li><code>RoomType</code>: Represents the RoomType entity.</li>
+</ul>
+</li>
+<li><code>model.dao</code>: Contains the interfaces for the DAO classes.<ul>
+<li><code>GuestDao</code>: Interface for the Guest DAO.</li>
+<li><code>RoomDao</code>: Interface for the Room DAO.</li>
+<li><code>BookingDao</code>: Interface for the Booking DAO.</li>
+<li><code>RoomTypeDao</code>: Interface for the RoomType DAO.</li>
+<li><code>DaoFactory</code>: Class for instantiating DAOs.</li>
+</ul>
+</li>
+<li><code>model.dao.impl</code>: Contains the implementations of the DAO interfaces.<ul>
+<li><code>GuestDaoJDBC</code>: Implementation of the Guest DAO using JDBC.</li>
+<li><code>RoomDaoJDBC</code>: Implementation of the Room DAO using JDBC.</li>
+<li><code>BookingDaoJDBC</code>: Implementation of the Booking DAO using JDBC.</li>
+<li><code>RoomTypeDaoJDBC</code>: Implementation of the RoomType DAO using JDBC.</li>
+</ul>
+</li>
+<li><code>model.service</code>: Contains the service classes of the system along with helper classes.<ul>
+<li><code>BookingService</code>: Service class for the Booking entity.</li>
+<li><code>ServiceResponse</code>: Helper class for service responses.</li>
+<li><code>ServiceFactory</code>: Class for instantiating services.</li>
+</ul>
+</li>
+<li><code>model.dto</code>: Contains DTO-style classes that aggregate various related entities.<ul>
+<li><code>BookingDetails</code>: Represents a Booking along with the associated Guest and Room.</li>
+<li><code>RoomDetails</code>: Represents a Room along with the associated RoomType.</li>
+<li><code>RoomWithBookings</code>: Represents a Room along with a list of associated Bookings.</li>
+<li><code>BookingSortOption</code>: Enum for sorting options in the BookingService.</li>
+</ul>
+</li>
+<li><code>db</code>: Contains the classes related to the database connection.<ul>
+<li><code>DB</code>: Utility class for configuring the database connection.</li>
+<li><code>DbException</code>: Custom exception for handling database errors.</li>
+<li><code>DaoFactory</code>: Class for instantiating DAOs.</li>
+</ul>
+</li>
+<li><code>controller</code>: Contains the controller classes for the JavaFX GUI.<ul>
+<li><code>MainController</code>: Controller for the main window.</li>
+<li><code>RoomController</code>: Controller for the Room view.</li>
+<li><code>BookingController</code>: Controller for the Booking view.</li>
+<li><code>View</code>: Enum for the different views in the application.</li>
+</ul>
+</li>
+<li><code>util</code>: Contains utility classes.<ul>
+<li><code>ScriptRunner</code>: Utility class for running SQL scripts.</li>
+</ul>
+</li>
+<li><code>Demo.java</code>: Demonstration class with examples of using the functionalities.</li>
+<li><code>BookingMgmtApp.java</code>: Main class for running the JavaFX application.</li>
+<li><code>db.properties</code>: Configuration file with the database access information.</li>
+<li><code>init.sql</code>: SQL script for initializing the database.</li>
+<li><code>seed.sql</code>: SQL script for seeding the database with sample data.</li>
+</ul>
+</li>
+<li><code>resources</code>: Contains the resources of the project, mainly the FXML files for the GUI.<ul>
+<li><code>main-view.fxml</code>: FXML file for the main window.</li>
+<li><code>rooms.fxml</code>: FXML file for the Room view.</li>
+<li><code>booking.fxml</code>: FXML file for the Booking view.</li>
+<li><code>booking-dialog.fxml</code>: FXML file for the Booking dialog.</li>
+</ul>
+</li>
+</ul>
+<p>Detailed documentation for each individual class and method can be found in the source code in the form of Javadoc comments.</p>
+<h2 id="running-the-application">Running the Application</h2>
+<p>The application requires a MariaDB MySQL database running at <code>localhost:3306</code> to be set up. The database connection details should be configured in the <code>db.properties</code> file. The application also requires the MySQL JDBC driver to be included in the classpath.</p>
+<p>The application automatically creates the necessary tables in the database by running the <code>init.sql</code> script. The <code>seed.sql</code> script can be used to populate the database with sample data.</p>
+<p>To run the application, follow these steps: <br>
+1. Clone the project repository to your local environment. <br>
+2. Set up a MariaDB MySQL database and configure the connection details in the <code>db.properties</code> file. <br>
+3. Import the project into your favorite IDE. <br>
+4. Ensure that the dependencies are correctly configured (e.g., MySQLConnector). <br>
+5. Run the <code>Demo.java</code> class to see examples of using the functionalities. <br>
+6. Run the <code>BookingMgmtApp.java</code> class to start the JavaFX application. <br>
+7. Use the GUI to interact with the application. <br>
+8. Enjoy managing your hotel bookings! <br></p>
+<h2 id="database-schema">Database Schema</h2>
+<p><img alt="Database Schema" src="img/database-schema.png" /></p>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<ul>
+<li>Add functionality to update every entity.</li>
+<li>Add functionality to manage guests.</li>
+<li>Add functionality to manage rooms.</li>
+<li>Implement more complex business logic (e.g., validation)</li>
+<li>Implement more complex queries and reports.</li>
+<li>Improve the GUI design and user experience.</li>
+<li>Add support for multiple users and authentication.</li>
+<li>Optimize database queries and data retrieval.</li>
+</ul></div>
             </div>
         </div>
 
@@ -189,5 +294,5 @@ docs/
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2024-12-09 03:12:35.106732+00:00
+Build Date UTC : 2024-12-09 06:14:39.412769+00:00
 -->
