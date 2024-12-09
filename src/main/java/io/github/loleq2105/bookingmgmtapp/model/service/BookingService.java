@@ -69,12 +69,48 @@ public class BookingService {
         return bookingDetailsList;
     }
 
+    public List<Guest> findAllGuests(){
+        return guestDao.findAll();
+    }
+
+    public Guest findGuest(int guestId){
+        return guestDao.findById(guestId);
+    }
+
+    public ServiceResponse insertGuest(Guest guest){
+        //TODO: Add validity check
+        guestDao.insert(guest);
+        return new ServiceResponse(true, new ArrayList<>());
+    }
+
+    public void deleteGuest(int guestId){
+        guestDao.deleteById(guestId);
+    }
+
     public BookingDetails findBooking(int bookingId){
         Booking booking = bookingDao.findById(bookingId);
         BookingDetails bookingDetails = assembleBookingDetails(booking);
 
         return bookingDetails;
 
+    }
+
+    public ServiceResponse insertBooking(Booking booking){
+        //Perform validity check, e.g. if room is free in the given time range. If not, return a ServiceResponse with success=false and messages for the user.
+        //If everything is OK, insert the booking and return a ServiceResponse with success=true and an empty list of messages.
+        List<String> messages = new ArrayList<>(); //List of messages to be displayed to the user
+
+        if(!roomIsFreeInRange(roomDao.findById(booking.getRoomId()), booking.getStartDate(), booking.getEndDate())) {
+            messages.add("Pokój jest zajęty w podanym terminie");
+            return new ServiceResponse(false, messages);
+        }
+
+        bookingDao.insert(booking);
+        return new ServiceResponse(true, messages);
+    }
+
+    public void deleteBooking(int bookingId){
+        bookingDao.deleteById(bookingId);
     }
 
     public List<RoomWithBookings> findAllRoomsWithBookings(){
@@ -99,28 +135,6 @@ public class BookingService {
                 roomDetailsList.add(assembleRoomDetails(room));
             }
         }
-
-//        Wrote this before the roomIsFreeInRange method. Oh, well.
-
-//        ArrayList<RoomWithBookings> roomsWithBookingsList = (ArrayList<RoomWithBookings>) findAllRoomsWithBookings();
-//        ArrayList<RoomDetails> roomDetailsList = new ArrayList<>();
-//
-//        Iterator<RoomWithBookings> i = roomsWithBookingsList.iterator();
-//        while(i.hasNext()){
-//            RoomWithBookings rwb = i.next();
-//            Iterator<Booking> j = rwb.getBookings().iterator();
-//            while(j.hasNext()){
-//                Booking b = j.next();
-//                if(doDateRangesOverlap(start, end, b.getStartDate(), b.getEndDate())){
-//                    i.remove();
-//                    break;
-//                }
-//            }
-//        }
-//
-//        for(RoomWithBookings roomWithBookings : roomsWithBookingsList){
-//            roomDetailsList.add(assembleRoomDetails(roomWithBookings.getRoom()));
-//        }
 
         return roomDetailsList;
 
