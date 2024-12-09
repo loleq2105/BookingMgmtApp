@@ -1,7 +1,6 @@
 package io.github.loleq2105.bookingmgmtapp.controller;
 
 import io.github.loleq2105.bookingmgmtapp.BookingMgmtApplication;
-import io.github.loleq2105.bookingmgmtapp.View;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -46,13 +46,14 @@ The project is organized into packages, with the following structure:
         - `MainController`: Controller for the main window.
         - `RoomController`: Controller for the Room view.
         - `BookingController`: Controller for the Booking view.
+        - `View`: Enum for the different views in the application.
     - `util`: Contains utility classes.
         - `ScriptRunner`: Utility class for running SQL scripts.
+    - `Demo.java`: Demonstration class with examples of using the functionalities.
+    - `BookingMgmtApp.java`: Main class for running the JavaFX application.
     - `db.properties`: Configuration file with the database access information.
     - `init.sql`: SQL script for initializing the database.
     - `seed.sql`: SQL script for seeding the database with sample data.
-    - `Demo.java`: Demonstration class with examples of using the functionalities.
-    - `BookingMgmtApp.java`: Main class for running the JavaFX application.
 - `resources`: Contains the resources of the project, mainly the FXML files for the GUI.
     - `main-view.fxml`: FXML file for the main window.
     - `rooms.fxml`: FXML file for the Room view.

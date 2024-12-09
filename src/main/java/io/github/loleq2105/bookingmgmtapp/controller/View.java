@@ -1,4 +1,4 @@
-package io.github.loleq2105.bookingmgmtapp;
+package io.github.loleq2105.bookingmgmtapp.controller;
 
 /**
  * Enum representing different views in the Booking Management Application.
