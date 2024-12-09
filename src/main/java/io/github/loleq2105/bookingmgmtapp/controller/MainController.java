@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the main application view.
+ */
 public class MainController implements Initializable {
 
     @FXML
@@ -31,28 +34,49 @@ public class MainController implements Initializable {
     @FXML
     private Button exitButton;
 
+    /**
+     * Handles the action when the booking button is clicked.
+     * Switches the view to the booking view.
+     */
     @FXML
     private void onBooking() {
         switchView(View.BOOKING);
     }
 
+    /**
+     * Handles the action when the rooms button is clicked.
+     * Switches the view to the rooms view.
+     */
     @FXML
     private void onRooms() {
         switchView(View.ROOMS);
     }
 
+    /**
+     * Handles the action when the guests button is clicked.
+     * Switches the view to the guests view.
+     */
     @FXML
     private void onGuests() {
         // Implement the switch to the guests view when available
     }
 
+    /**
+     * Handles the action when the exit button is clicked.
+     * Exits the application.
+     */
     @FXML
     private void onExit() {
-        //Exit the application
+        // Exit the application
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Switches the view to the specified view.
+     *
+     * @param view the view to switch to
+     */
     private void switchView(View view) {
         try {
             Parent root = FXMLLoader.load(BookingMgmtApplication.class.getResource(view.getFileName()));
@@ -62,6 +86,13 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Initializes the controller class.
+     * Sets the initial view to the booking view.
+     *
+     * @param url the location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         switchView(View.BOOKING);

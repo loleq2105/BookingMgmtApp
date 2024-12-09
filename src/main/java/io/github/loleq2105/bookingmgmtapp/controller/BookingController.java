@@ -32,6 +32,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for managing the bookings view.
+ */
 public class BookingController implements Initializable {
 
     @FXML
@@ -70,12 +73,15 @@ public class BookingController implements Initializable {
     // Define property to represent selected booking
     private SimpleObjectProperty<BookingDetails> selectedBooking = new SimpleObjectProperty<>();
 
-    //Define property to represent the (potentially filtered and sorted) list of BookingDetails to be displayed in the table
+    // Define property to represent the (potentially filtered and sorted) list of BookingDetails to be displayed in the table
     private SimpleObjectProperty<ObservableList<BookingDetails>> filteredAndSortedBookingDetails = new SimpleObjectProperty<>();
 
-    //Define property to represent the list of all BookingDetails
+    // Define property to represent the list of all BookingDetails
     private SimpleObjectProperty<ObservableList<BookingDetails>> allBookingDetails = new SimpleObjectProperty<>();
 
+    /**
+     * Updates the list of all booking details.
+     */
     private void updateAllBookingDetails(){
         BookingService bookingService = ServiceFactory.createBookingService();
 
@@ -86,6 +92,11 @@ public class BookingController implements Initializable {
         allBookingDetails.set(bookingDetailsObservableList);
     }
 
+    /**
+     * Sets the details labels for the selected booking.
+     *
+     * @param bookingDetails the booking details
+     */
     private void setDetailsLabels(BookingDetails bookingDetails){
         Guest guest = bookingDetails.getGuest();
         roomNumberLabel.setText(bookingDetails.getRoomDetails().getRoom().getNumber());
@@ -97,6 +108,11 @@ public class BookingController implements Initializable {
         guestPhoneLabel.setText(guest.getPhone());
     }
 
+    /**
+     * Handles the action when the add button is clicked.
+     *
+     * @param event the action event
+     */
     @FXML
     void onAddButtonClick(ActionEvent event) {
         try {
@@ -121,7 +137,7 @@ public class BookingController implements Initializable {
                 BookingService bookingService = ServiceFactory.createBookingService();
                 bookingService.insertBooking(newBooking);
                 updateAllBookingDetails();
-                //Show ControlsFX notification confirming successful booking in bottom-right corner of current stage
+                // Show ControlsFX notification confirming successful booking in bottom-right corner of current stage
                 Window owner = ((Node) event.getSource()).getScene().getWindow();
                 Notifications.create()
                         .title("Rezerwacja dodana")
@@ -135,9 +151,14 @@ public class BookingController implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the delete button is clicked.
+     *
+     * @param event the action event
+     */
     @FXML
     void onDeleteButtonClick(ActionEvent event) {
-        //Show alert if no booking is selected
+        // Show alert if no booking is selected
         if(selectedBooking.get() == null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Brak zaznaczenia");
@@ -146,7 +167,7 @@ public class BookingController implements Initializable {
             alert.showAndWait();
             return;
         }
-        //Ask user to confirm deletion
+        // Ask user to confirm deletion
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Potwierdzenie usunięcia");
         alert.setHeaderText("Czy na pewno chcesz usunąć rezerwację?");
@@ -160,6 +181,9 @@ public class BookingController implements Initializable {
         });
     }
 
+    /**
+     * Sorts the booking details based on the selected sort option.
+     */
     private void sortBookingDetails() {
         BookingSortOption sortOption = sortByComboBox.getValue();
 
@@ -176,6 +200,9 @@ public class BookingController implements Initializable {
         filteredAndSortedBookingDetails.set(sortedList);
     }
 
+    /**
+     * Filters the booking details based on the selected date range.
+     */
     private void filterBookingDetails() {
         LocalDate fromDate = fromDatePicker.getValue();
         LocalDate toDate = toDatePicker.getValue();
@@ -204,15 +231,24 @@ public class BookingController implements Initializable {
         filteredAndSortedBookingDetails.set(filteredList);
     }
 
+    /**
+     * Filters and sorts the booking details.
+     */
     private void filterAndSortBookingDetails() {
         filterBookingDetails();
         sortBookingDetails();
     }
 
+    /**
+     * Initializes the controller class.
+     *
+     * @param url the location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //Create table columns
+        // Create table columns
         TableColumn<BookingDetails, Number> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(cellDataFeatures -> new SimpleIntegerProperty(cellDataFeatures.getValue().getBooking().getId()));
         idColumn.setSortable(false);
@@ -283,7 +319,6 @@ public class BookingController implements Initializable {
 
             filterAndSortBookingDetails();
         });
-
 
         // Populate sortByComboBox with sorting options
         sortByComboBox.setItems(FXCollections.observableArrayList(BookingSortOption.values()));

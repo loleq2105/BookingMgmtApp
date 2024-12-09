@@ -22,6 +22,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for managing the booking dialog.
+ */
 public class BookingDialogController implements Initializable {
 
     @FXML
@@ -62,6 +65,9 @@ public class BookingDialogController implements Initializable {
 
     private Booking booking;
 
+    /**
+     * Populates the guests table with data from the booking service.
+     */
     private void populateGuestsTable() {
         bookingService = ServiceFactory.createBookingService();
         List<Guest> guests = bookingService.findAllGuests();
@@ -69,6 +75,9 @@ public class BookingDialogController implements Initializable {
         guestsTable.setItems(guestList);
     }
 
+    /**
+     * Handles the change in date pickers and updates the rooms table.
+     */
     private void onDateChanged() {
         LocalDate startDate = fromDatePicker.getValue();
         LocalDate endDate = toDatePicker.getValue();
@@ -82,7 +91,9 @@ public class BookingDialogController implements Initializable {
         }
     }
 
-
+    /**
+     * Handles the action when the add booking button is clicked.
+     */
     @FXML
     private void onAddBooking() {
         Guest selectedGuest = guestsTable.getSelectionModel().getSelectedItem();
@@ -100,6 +111,12 @@ public class BookingDialogController implements Initializable {
         }
     }
 
+    /**
+     * Shows the booking dialog.
+     *
+     * @param parentStage the parent stage
+     * @return the booking created
+     */
     public Booking showDialog(Stage parentStage) {
         try {
             dialogStage = new Stage();
@@ -114,6 +131,12 @@ public class BookingDialogController implements Initializable {
         return booking;
     }
 
+    /**
+     * Initializes the controller class.
+     *
+     * @param url the location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         guestIdColumn.setCellValueFactory(cellDataFeatures -> new SimpleIntegerProperty(cellDataFeatures.getValue().getId()));
@@ -180,25 +203,42 @@ public class BookingDialogController implements Initializable {
         });
 
         updateAddBookingButtonState();
-
     }
 
+    /**
+     * Updates the state of the add booking button.
+     */
     private void updateAddBookingButtonState() {
         boolean disable = fromDatePicker.getValue() == null ||
                 toDatePicker.getValue() == null ||
                 guestsTable.getSelectionModel().getSelectedItem() == null ||
                 roomsTable.getSelectionModel().getSelectedItem() == null;
-        addBookingButton.setDisable(disable);
+                addBookingButton.setDisable(disable);
     }
 
+    /**
+     * Sets the booking service.
+     *
+     * @param bookingService the booking service
+     */
     public void setBookingService(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
+    /**
+     * Gets the booking.
+     *
+     * @return the booking
+     */
     public Booking getBooking() {
         return booking;
     }
 
+    /**
+     * Sets the dialog stage.
+     *
+     * @param dialogStage the dialog stage
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
